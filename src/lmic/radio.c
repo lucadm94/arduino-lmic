@@ -534,7 +534,7 @@ static void configLoraModem () {
 
         // set ModemConfig2 (sf, AgcAutoOn=1 SymbTimeoutHi)
         u1_t mc2;
-        mc2 = (SX1272_MC2_SF7 + ((sf-1)<<4)) | 0x04 | ((LMIC.rxsyms >> 8) & 0x3);
+        mc2 = (SX1272_MC2_SF7 + ((sf-1)<<4)) | 0x04 | ((LMIC.rxsyms >> 8) & 0x3));
 
 #if CFG_TxContinuousMode
         // Only for testing
@@ -1085,7 +1085,6 @@ int radio_init () {
     hal_waitUntil(os_getTime()+ms2osticks(1)); // wait >100us
     hal_pin_rst(2); // configure RST pin floating!
     hal_waitUntil(os_getTime()+ms2osticks(5)); // wait 5ms
-
     opmode(OPMODE_SLEEP);
 
     // some sanity checks, e.g., read version number
@@ -1133,7 +1132,6 @@ int radio_init () {
     writeReg(FSKRegImageCal, (readReg(FSKRegImageCal) & RF_IMAGECAL_IMAGECAL_MASK)|RF_IMAGECAL_IMAGECAL_START);
     while((readReg(FSKRegImageCal) & RF_IMAGECAL_IMAGECAL_RUNNING) == RF_IMAGECAL_IMAGECAL_RUNNING) { ; }
 #endif /* CFG_sx1276mb1_board */
-
     opmode(OPMODE_SLEEP);
 
     hal_enableIRQs();

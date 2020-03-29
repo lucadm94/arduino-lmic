@@ -2803,6 +2803,10 @@ void LMIC_reset (void) {
 #endif // LMIC_ENABLE_DeviceTimeReq
 }
 
+void  LMIC_forceSleep   (void) {
+    os_radio(RADIO_RST);
+}
+
 
 void LMIC_init (void) {
     LMIC.opmode = OP_SHUTDOWN;

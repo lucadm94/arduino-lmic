@@ -165,3 +165,8 @@ bit_t os_queryTimeCriticalJobs(ostime_t time) {
     else
         return 0;
 }
+
+ostime_t ticks_to_critical_job() {
+    return OS.scheduledjobs ? (OS.scheduledjobs->deadline - os_getTime()) : INT32_MIN;
+}
+
